@@ -21,7 +21,21 @@ import { hasInjectedWallet, WALLET_INSTALL_URL } from "@/lib/wallet";
  * Wrap only the parts of a page that transact. A read-only view — verifying a record, reading a
  * public certificate — should render for a visitor with no wallet at all, so it goes outside.
  */
-export default function BotChainGate({ children }: { children: React.ReactNode }) {
+export default function BotChainGate({
+  children,
+  noWalletNote,
+}: {
+  children: React.ReactNode;
+  /**
+   * What still works without a wallet, in this app's own words.
+   *
+   * It exists because the default was once Seal's copy — "hashing a file still works, but sealing
+   * needs a wallet" — which every project that copied the template then told its users, including
+   * the ones that never hash anything. A shared component must not assert what a particular app
+   * does, so the default says only what is true everywhere and each app can say more.
+   */
+  noWalletNote?: React.ReactNode;
+}) {
   const { isConnected } = useAccount();
   const chainId = useChainId();
   const { switchChain, isPending } = useSwitchChain();
@@ -38,8 +52,8 @@ export default function BotChainGate({ children }: { children: React.ReactNode }
       <Notice title="No wallet found">
         <p className="mb-3">
           This browser has no Ethereum wallet extension, so there is nothing for{" "}
-          {activeBotChain.name} to connect to. Hashing a file still works here — it happens in the
-          browser and needs no wallet — but sealing one needs a wallet to sign the transaction.
+          {activeBotChain.name} to connect to.{" "}
+          {noWalletNote ?? "Anything here that only reads the chain still works; signing a transaction needs a wallet."}
         </p>
         <p className="mb-4">
           Install MetaMask, or open this page in a browser that already has it.
