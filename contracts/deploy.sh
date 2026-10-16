@@ -79,20 +79,29 @@ forge script script/Deploy.s.sol --rpc-url "$RPC" --broadcast
 
 # Verification must not fail the deploy. The contract is on chain by this point, and an explorer
 # slow to index is a reason to retry the verify, not to treat the deployment as broken.
-CONTRACT=$(python3 -c "
+# Both the address and the contract name come from the broadcast log. The name matters: a first
+# attempt picked `ls src/*.sol | head -1`, which is alphabetical, so a project whose entry point is
+# TokenFactory.sol had its factory submitted for verification as ForgedToken. Any project with
+# more than one contract in src/ hits that.
+read -r CONTRACT NAME <<EOS
+$(python3 -c "
 import json, pathlib, sys
 data = json.loads(pathlib.Path('broadcast/Deploy.s.sol/' + sys.argv[1] + '/run-latest.json').read_text())
 created = [t for t in data['transactions'] if t.get('transactionType') == 'CREATE']
-print(created[-1]['contractAddress'] if created else '')
+print(created[-1]['contractAddress'], created[-1].get('contractName', '') if created else '')
 " "$EXPECTED_ID")
+EOS
 
-if [ -z "$CONTRACT" ]; then
-  echo "could not read the deployed address out of the broadcast log; verify by hand" >&2
+if [ -z "$CONTRACT" ] || [ -z "$NAME" ]; then
+  echo "could not read the deployment out of the broadcast log; verify by hand" >&2
   exit 0
 fi
 
-SRC=$(ls src/*.sol | head -1)
-NAME=$(basename "$SRC" .sol)
+SRC=$(grep -rl "contract $NAME" src/*.sol | head -1)
+if [ -z "$SRC" ]; then
+  echo "could not find the source file declaring $NAME; verify by hand" >&2
+  exit 0
+fi
 
 echo
 echo "verifying $NAME at $CONTRACT"
