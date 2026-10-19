@@ -36,14 +36,12 @@ export default function PageShell({ children, nav = [], title, description }: Pa
       >
         <div className="flex md:flex-col items-center md:items-stretch gap-4 md:gap-8 w-full">
           <Link href="/" className="flex items-center gap-2.5 no-underline flex-shrink-0">
-            <span
-              aria-hidden="true"
-              style={{
-                width: "16px", height: "16px", borderRadius: "3px",
-                background: "var(--accent)",
-                boxShadow: "6px 0 0 -4px var(--accent), 12px 0 0 -8px var(--accent)",
-              }}
-            />
+            <svg aria-hidden="true" viewBox="0 0 100 100" style={{ width: "20px", height: "20px" }}>
+              <rect x="12" y="38" width="22" height="22" rx="3" fill="var(--accent)" />
+              <rect x="40" y="22" width="22" height="22" rx="3" fill="var(--accent)" opacity="0.75" />
+              <rect x="40" y="56" width="22" height="22" rx="3" fill="var(--accent)" opacity="0.75" />
+              <rect x="68" y="38" width="22" height="22" rx="3" fill="var(--accent)" opacity="0.5" />
+            </svg>
             <span className="text-[16px] font-semibold tracking-[-0.02em]">{app.name}</span>
           </Link>
 
