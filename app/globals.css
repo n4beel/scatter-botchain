@@ -15,6 +15,10 @@
  * figures that align down the column so a wrong amount is visible by shape.
  */
 :root {
+  /* Native controls follow this: without it the browser paints the date picker's
+     calendar glyph for a light page, which on a dark one is simply invisible, and the
+     picker popup comes up in the wrong palette. Scrollbars and selects follow too. */
+  color-scheme: dark;
   --bg-base: #0F1216;
   --bg-surface: #151A20;
   --bg-elevated: #1B2128;
