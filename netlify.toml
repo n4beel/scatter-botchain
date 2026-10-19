@@ -40,15 +40,13 @@
   # NEXT_PUBLIC_* is inlined into the browser bundle at build time, which is exactly why no
   # secret may ever be given one of these names. Nothing in these apps needs one.
   #
-  # Bohr testnet for now. This is deliberately not mainnet yet: the site is here to be tested
-  # against a chain where mistakes are free, and the network badge reads "Testnet" in amber so a
-  # screenshot from it can never be mistaken for listing proof. Switch to mainnet by setting
-  # NETWORK to "mainnet" and filling the 677 pair, in a commit, so the change is reviewable.
-  NEXT_PUBLIC_BOTCHAIN_NETWORK = "testnet"
+  # Mainnet. The contract below is deployed and source-verified on BOT Chain (677); the
+  # Bohr pair stays filled so the testnet deployment remains reachable and documented.
+  NEXT_PUBLIC_BOTCHAIN_NETWORK = "mainnet"
   NEXT_PUBLIC_CONTRACT_968 = "0xAb246cd1EbD9aCcFba2279EB9eC60c507DdB2890"
   NEXT_PUBLIC_DEPLOY_BLOCK_968 = "27061832"
-  NEXT_PUBLIC_CONTRACT_677 = ""
-  NEXT_PUBLIC_DEPLOY_BLOCK_677 = ""
+  NEXT_PUBLIC_CONTRACT_677 = "0xAb246cd1EbD9aCcFba2279EB9eC60c507DdB2890"
+  NEXT_PUBLIC_DEPLOY_BLOCK_677 = "27267165"
 
 [[headers]]
   for = "/*"

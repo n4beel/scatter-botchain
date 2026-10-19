@@ -11,11 +11,15 @@ Pay hundreds of addresses in a single transaction.
 | Contract | [`0xAb246cd1EbD9aCcFba2279EB9eC60c507DdB2890`](https://scan.bohr.life/address/0xAb246cd1EbD9aCcFba2279EB9eC60c507DdB2890) · source verified |
 | Deploy block | 27061832 |
 
-### BOT Chain mainnet (677) — not yet deployed
+### BOT Chain mainnet (677) — live
 
-Mainnet is the only network the listing bar accepts. The site currently targets Bohr, and the
-network badge reads **Testnet** in amber so a screenshot from it can never be mistaken for
-listing proof.
+| | |
+|---|---|
+| Contract | [`0xAb246cd1EbD9aCcFba2279EB9eC60c507DdB2890`](https://scan.botchain.ai/address/0xAb246cd1EbD9aCcFba2279EB9eC60c507DdB2890) · source verified |
+| Deploy block | 27267165 |
+
+The site targets mainnet. The Bohr deployment above stays up and stays documented, so the
+contract can still be exercised somewhere mistakes are free.
 
 ---
 
