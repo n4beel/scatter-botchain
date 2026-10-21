@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ConnectButton from "@/components/ui/ConnectButton";
 import NetworkBadge from "@/components/botchain/NetworkBadge";
+import BuiltOnBotChain from "@/components/botchain/BuiltOnBotChain";
 import { app } from "@/lib/app-config";
 
 export type NavItem = { href: string; label: string };
@@ -92,7 +93,7 @@ export default function PageShell({ children, nav = [], title, description }: Pa
           <NetworkBadge />
           <ConnectButton />
           <div className="flex flex-col gap-1 text-[11px]" style={{ color: "var(--text-tertiary)" }}>
-            <span style={{ color: "var(--text-secondary)" }}>Built on BOT Chain</span>
+            <BuiltOnBotChain style={{ color: "var(--text-secondary)" }} />
             <a href="https://botchain.ai" target="_blank" rel="noreferrer">botchain.ai</a>
             <a href="https://scan.botchain.ai" target="_blank" rel="noreferrer">BOT Chain Explorer</a>
           </div>
@@ -121,7 +122,7 @@ export default function PageShell({ children, nav = [], title, description }: Pa
           className="md:hidden mt-10 pt-5 flex flex-wrap gap-x-4 gap-y-1 text-[11px]"
           style={{ borderTop: "1px solid var(--border-subtle)", color: "var(--text-tertiary)" }}
         >
-          <span style={{ color: "var(--text-secondary)" }}>Built on BOT Chain</span>
+          <BuiltOnBotChain style={{ color: "var(--text-secondary)" }} />
           <a href="https://botchain.ai" target="_blank" rel="noreferrer">botchain.ai</a>
           <a href="https://scan.botchain.ai" target="_blank" rel="noreferrer">BOT Chain Explorer</a>
         </div>
